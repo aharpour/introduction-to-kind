@@ -78,11 +78,18 @@ installing ingress
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 ```
 let's run an application
+
 ```shell
 helm create demo
-helm install demo2 ./demo/
 ```
-tearing down the cluster
+edit "demo/values.yaml" file and enable the ingress then replace "chart-example.local" with "localhost" and then install the chart
+
+```shell
+helm install demo ./demo/
+```
+You can view the app via [http://localhost/](http://localhost/) 
+
+To tearing down the cluster use the following domain
 ```shell
 kind delete cluster --name multi-cluster
 ```
