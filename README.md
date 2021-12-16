@@ -93,3 +93,14 @@ To tearing down the cluster use the following domain
 ```shell
 kind delete cluster --name multi-cluster
 ```
+## Setting up a single node cluster with ingress
+To set up the cluster
+```shell
+kind create cluster --wait 60s --name cluster-1 --config=single-node-cluster-config.yaml && \
+kubectl label nodes cluster-1-control-plane ingress-ready=true && \
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+```
+To delete the cluster
+```shell
+kind delete cluster --name cluster-1
+```
